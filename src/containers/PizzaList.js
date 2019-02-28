@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import Pizza from '../components/Pizza'
+
 class PizzaList extends Component {
 
+  sendPizzasToTable = () => {
+    return this.props.pizzas.map(pizza => {
+      return <Pizza
+        key={pizza.id}
+        pizza={pizza}
+        sendPizzasToForm={this.props.sendPizzasToForm}
+      />
+    })
+  }
+
   render() {
+    // console.log(this.props);
     return (
       <table className="table table-striped">
         <thead>
@@ -14,9 +26,7 @@ class PizzaList extends Component {
           </tr>
         </thead>
         <tbody>
-          {
-            //render Pizza here
-          }
+          {this.sendPizzasToTable()}
         </tbody>
       </table>
     );
@@ -25,3 +35,18 @@ class PizzaList extends Component {
 }
 
 export default PizzaList;
+
+
+// <Pizza pizzas={this.props}/>
+
+
+// this.props.map(pizza => {console.log("pizza")})
+
+// return pizzas.map(pizza => {
+//   return <Pizza
+//     key={pizza.id}
+//     topping={pizza.topping}
+//     size={pizza.size}
+//     veg={pizza.vegetarian}
+//   />
+// })
